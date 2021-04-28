@@ -5,8 +5,8 @@ const CHARSET_TITLE = `ooooooooo.                                               
 
 // WAKE UP
 _maindocumentready = setInterval((f)=>{if(document.readyState == "complete"){clearInterval(_maindocumentready);delete _maindocumentready;f();}}, 1, ()=>{
-  newElement('div', {id:'test', type:'none', text:CHARSET_TITLE, width:109, height:9, x:'center'}, 'main');
-
   // change base color to #4dd5ff
   document.getElementsByTagName("prompt")[0].setAttribute('style','color:#4dd5ff');
+  
+  newElement('div', {id:'test', type:'none', text:CHARSET_TITLE, width:109, height:9, x:'center'}, 'main');
 });
