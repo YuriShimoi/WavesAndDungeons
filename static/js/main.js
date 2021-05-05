@@ -4,12 +4,12 @@
 
 // FUNCTIONS
 function startGame(){
-  // change base color to #4dd5ff
-  setBaseColor("#4dd5ff");
+  // change base color to #5de5ff
+  setBaseColor("#ffffff");
 
   newElement('div', {id:'title_case', type:'none', width:107, height:19, x:'center', y:'center'}, 'main', draw=false);
-  newElement('div', {id:'title_p1', type:'none', text:CHARSET_TITLE_1, width:105, height:7, x:'center'}, 'title_case', draw=false);
-  newElement('div', {id:'title_p2', type:'none', text:CHARSET_TITLE_2, width:105, height:9, x:'center', yalign:'bottom', color:'#2d85bd'}, 'title_case', draw=false);
+  newElement('div', {id:'title_p1',   type:'none', text:CHARSET_TITLE_1, width:105, height:7, x:'center', color:'#5de5ff'}, 'title_case', draw=false);
+  newElement('div', {id:'title_p2',   type:'none', text:CHARSET_TITLE_2, width:105, height:9, x:'center', yalign:'bottom', color:'#2d85bd'}, 'title_case', draw=false);
   delElement('start_button', draw=false);
 
   diagonalBlinkDiv('title_p1', '~', 5, 2);
