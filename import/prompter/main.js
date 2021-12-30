@@ -22,27 +22,26 @@ let clean_screen = {};
 
 
 // FUNCTIONS
-function calcScreenSize(){ /* 8.8px width x 19px height */
+function calcScreenSize() { /* 8.8px width x 19px height */
   if(prompt_container === null) return;
-  let prwidth  = prompt_container.offsetWidth  / 8.8;
-  let prheight = prompt_container.offsetHeight /  19;
+  
+  clean_screen.width     = Math.floor(prompt_container.offsetWidth  / 8.8);
+  clean_screen.height    = Math.floor(prompt_container.offsetHeight /  19);
 
-  clean_screen.width     = Math.floor(prwidth);
-  clean_screen.height    = Math.floor(prheight);
   clean_screen.map       = new Array(clean_screen.height).fill().map(_ => new Array(clean_screen.width).fill(' '));
-  clean_screen.effect    = new Array(clean_screen.height).fill().map(_ => new Array(clean_screen.width).fill().map(e => new Array(4).fill(false)));
+  clean_screen.effect    = new Array(clean_screen.height).fill().map(_ => new Array(clean_screen.width).fill().map(__ => [false,false,false,false]));
   clean_screen.decorator = new Array(clean_screen.height).fill().map(_ => new Array(clean_screen.width).fill(''));
 
   clearScreen();
 }
 
-function drawScreen(){
+function drawScreen() {
   let html    = '';
   let aeffect = [false, false, false, ''];
   let openeds = '';
   
-  for(let y=0; y < screen_properties.map.length; y++){
-    for(let x=0; x < screen_properties.map[y].length; x++){
+  for(let y=0; y < screen_properties.map.length; y++) {
+    for(let x=0; x < screen_properties.map[y].length; x++) {
       try{
         let effect    = screen_properties.effect[y][x];
         let is_effect = [
@@ -53,26 +52,26 @@ function drawScreen(){
         ];
 
         // EXCLUDING
-        if(!is_effect[0] && !effect[0] && aeffect[0]) {
+        if(!is_effect[0] && !effect[0] && aeffect[0]) { // bold
           html      += openeds.includes('b')? '</b>': '';
           aeffect[0] = false;
           let e_pos  = openeds.lastIndexOf('b');
           openeds    = openeds.substring(0, e_pos) + openeds.substring(e_pos+1);
         }
-        if(!is_effect[1] && !effect[1] && aeffect[1]) {
+        if(!is_effect[1] && !effect[1] && aeffect[1]) { // italic
           html      += openeds.includes('i')? '</i>': '';
           aeffect[1] = false;
           let e_pos  = openeds.lastIndexOf('i');
           openeds    = openeds.substring(0, e_pos) + openeds.substring(e_pos+1);
         }
-        if(!is_effect[2] && !effect[2] && aeffect[2]) {
+        if(!is_effect[2] && !effect[2] && aeffect[2]) { // underline
           html      += openeds.includes('u')? '</u>': '';
           aeffect[2] = false;
           let e_pos  = openeds.lastIndexOf('u');
           openeds    = openeds.substring(0, e_pos) + openeds.substring(e_pos+1);
         }
-        if(!is_effect[3] && !effect[3] && aeffect[3]) {
-          while(openeds.includes('span')){
+        if(!is_effect[3] && !effect[3] && aeffect[3]) { // color
+          while(openeds.includes('span')) {
             html     += '</span>';
             let e_pos = openeds.lastIndexOf('span');
             openeds   = openeds.substring(0, e_pos) + openeds.substring(e_pos+1);
@@ -81,34 +80,34 @@ function drawScreen(){
         }
 
         // INCLUDING
-        if(is_effect[3] && effect[3]){ // color
+        if(is_effect[3] && effect[3]) { // color
           aeffect[3] = effect[3];
           html      += `<span style="color:${effect[3]}">`;
           openeds   += 'span';
         }
 
-        if(is_effect[0] && effect[0] && !aeffect[0]){ // bold
-          aeffect[0] = effect[0];
-          html      += `<b>`;
-          openeds   += 'b';
-        }
-        
-        if(is_effect[1] && effect[1] && !aeffect[1]){ // italic
-          aeffect[1] = effect[1];
-          html      += `<i>`;
-          openeds   += 'i';
-        }
-
-        if(is_effect[2] && effect[2] && !aeffect[2]){ // underline
+        if(is_effect[2] && effect[2] && !aeffect[2]) { // underline
           aeffect[2] = effect[2];
           html      += `<u ${screen_properties.decorator[y][x]?screen_properties.decorator[y][x]:''}>`;
           openeds   += 'u';
         }
         
-        html += screen_properties.map[y][x]? screen_properties.map[y][x]: ' ';
+        if(is_effect[1] && effect[1] && !aeffect[1]) { // italic
+          aeffect[1] = effect[1];
+          html      += `<i>`;
+          openeds   += 'i';
+        }
+
+        if(is_effect[0] && effect[0] && !aeffect[0]) { // bold
+          aeffect[0] = effect[0];
+          html      += `<b>`;
+          openeds   += 'b';
+        }
+        
+        html += screen_properties.map[y][x]? screen_properties.map[y][x]: WHITESPACE;
       }
       catch {
-        html += screen_properties.map[y][x]? screen_properties.map[y][x]: ' ';
+        html += screen_properties.map[y][x]? screen_properties.map[y][x]: WHITESPACE;
       }
     }
     html += '\n';
@@ -116,10 +115,10 @@ function drawScreen(){
   screen_container.innerHTML = html;
 }
 
-function clearScreen(){
+function clearScreen() {
   screen_properties = {
     decorator: new Array(clean_screen.decorator.length).fill().map(_ => [...clean_screen.decorator[0]]),
-    effect: new Array(clean_screen.effect.length).fill().map(_ => new Array(clean_screen.effect[0].length).fill().map(e => new Array(4).fill(false))),
+    effect: new Array(clean_screen.effect.length).fill().map(_ => new Array(clean_screen.effect[0].length).fill().map(__ => [false,false,false,false])),
     map: new Array(clean_screen.map.length).fill().map(_ => [...clean_screen.map[0]]),
     height: clean_screen.height,
     width: clean_screen.width
@@ -127,50 +126,60 @@ function clearScreen(){
   drawScreen();
 }
 
-function doBox(x, y, sx, sy, type="single", fill=true, color=false){
+function doBox(x, y, sx, sy, type="single", fill=true, color=false) {
   let endx = x + sx + 1;
   let endy = y + sy + 1;
 
   screen_properties.map.forEach((row, i) => {
-    if(i >= y && i <= endy){
+    if(i >= y && i <= endy) {
       screen_properties.map[i].forEach((_, l) => {
-        if(l >= x && l <= endx){
+        if(l >= x && l <= endx) {
           screen_properties.effect[i][l]    = [false, false, false, color];
           screen_properties.decorator[i][l] = '';
         }
     });
     }
-    if(i > y && i < endy){
+    if(i > y && i < endy) {
       row[x]    = charMap('left' , type, row[x]);
       row[endx] = charMap('right', type, row[endx]);
-      if(fill) screen_properties.map[i].forEach((_, l) => {if(l>x && l<endx) screen_properties.map[i][l] = charMap('middle', type)});
+
+      if(fill) {
+        let charmapMiddle = charMap('middle', type);
+        for(let l=x+1; l < endx; l++) {
+          screen_properties.map[i][l] = charmapMiddle;
+        }
+      }
     }
   });
 
-  if(y >= 0 && y < screen_properties.map.length){
-    screen_properties.map[y].forEach((e, i) => {if(i>x && i<endx) screen_properties.map[y][i] = charMap('top', type, e)});
+  if(y >= 0 && y < screen_properties.map.length) {
+    for(let i=x+1; i < endx; i++) {
+      screen_properties.map[y][i]  = charMap('top', type, screen_properties.map[y][i]);
+    }
     screen_properties.map[y][x]    = charMap('top-left' , type, screen_properties.map[y][x]);
     screen_properties.map[y][endx] = charMap('top-right', type, screen_properties.map[y][endx]);
   }
 
-  if(endy >= 0 && endy < screen_properties.map.length){
-    screen_properties.map[endy].forEach((e, i) => {if(i>x && i<endx) screen_properties.map[endy][i] = charMap('bottom', type, e)});
+  if(endy >= 0 && endy < screen_properties.map.length) {
+    for(let i=x+1; i < endx; i++) {
+      screen_properties.map[endy][i]  = charMap('bottom', type, screen_properties.map[endy][i]);
+    }
     screen_properties.map[endy][x]    = charMap('bottom-left' , type, screen_properties.map[endy][x]);
     screen_properties.map[endy][endx] = charMap('bottom-right', type, screen_properties.map[endy][endx]);
   }
 }
 
-function doText(text, x, y, width, height, clip=false, textdec=[false, false, false, false], decorators=''){
+function doText(text, x, y, width, height, clip=false, textdec=[false, false, false, false], decorators='') {
   // textdec = [bold, italic, underlined, color]
   text = text + ' '; // just for clip adjust purpoises
   
   let pivot = 0;
   let first_word_size = text.split(' ')[0].length;
 
-  for(let i = y; i < height+y; i++){
-    for(let l = x; l < width+x; l++){
+  for(let i = y; i < height+y; i++) {
+    for(let l = x; l < width+x; l++) {
       if(!clip && pivot > first_word_size && text[pivot] != ' ' && text.slice(pivot).indexOf(' ') >= ((width+x) - l)) break;
-      if((i >= 0&& i < screen_properties.map.length) && (l >= 0 && l < screen_properties.map[i].length)){
+      if((i >= 0&& i < screen_properties.map.length) && (l >= 0 && l < screen_properties.map[i].length)) {
         screen_properties.map[i][l]       = text[pivot];
         screen_properties.effect[i][l]    = textdec;
         screen_properties.decorator[i][l] = decorators;
@@ -183,7 +192,7 @@ function doText(text, x, y, width, height, clip=false, textdec=[false, false, fa
   }
 }
 
-function doProgress(x, y, width, height=1, value=50, max=100, textdec=[true, false, false, false], cst_char=['', '']){
+function doProgress(x, y, width, height=1, value=50, max=100, textdec=[true, false, false, false], cst_char=['', '']) {
   // textdec  = [bold, italic, underlined, color]
   // cst_char = [<fill>,<empty>]
   value  = value  < 0? 0: value > max? max: value;
@@ -196,28 +205,26 @@ function doProgress(x, y, width, height=1, value=50, max=100, textdec=[true, fal
   let empty_amm  = Math.round(((width*height) / max) * (max - value));
   let ptext = Array(fill_amm).fill(fill_char).join('') + Array(empty_amm).fill(empty_char).join('');
 
-  for(let i=0; i < height; i++){
+  for(let i=0; i < height; i++) {
     doText(ptext.substr(width*i, width), x, y+parseInt(i), width, 1, true, textdec);
   }
 }
 
-function htmlConvert(){
+function htmlConvert() {
   clearScreen();
   prompt_container.querySelectorAll(":not(screen)").forEach(child => {
     let valid_elements = ["DIV", "TEXT", "PROGRESS"];
     if(!valid_elements.includes(child.tagName)) return;
     
-    let get_attrs = (e) => e.attributes;
     let get_attr  = (attrs, a, d) => a in attrs? attrs[a].value: d;
     let get_pos   = (ch, pos) => {
       let final_pos = 0;
       let pr        = ch.parentElement;
-      let dir       = pos == 'x'? 'right': 'bottom';
-      let sz        = pos == 'x'? 'width': 'height';
+      let [dir, sz] = pos == 'x'? ['right', 'width']: ['bottom', 'height'];
       let sz_def    = {
         'PROMPT'  : {'width': screen_properties.width, 'height': screen_properties.height},
         'DIV'     : {'width': 10, 'height': 3},
-        'TEXT'    : {'width': 'text' in ch.attributes? Math.floor(ch.attributes.text.value.length-2): 0, 'height': 1},
+        'TEXT'    : {'width': ch.attributes.text? Math.floor(ch.attributes.text.value.length-2): 0, 'height': 1},
         'PROGRESS': {'width': 10, 'height': 1}
       };
       let sz_adjust = {
@@ -226,16 +233,16 @@ function htmlConvert(){
         'TEXT'    : {'width': 0, 'height': -2},
         'PROGRESS': {'width': 0, 'height': -2}
       }
-      let chsz = sz in ch.attributes? (parseInt(ch.attributes[sz].value) + sz_adjust[ch.tagName][sz])/2: (sz_def[ch.tagName][sz] + sz_adjust[ch.tagName][sz])/2;
-      let ch_attrs = get_attrs(ch);
-      let pr_attrs = get_attrs(pr);
+      let chsz = (parseInt(get_attr(ch.attributes, sz, sz_def[ch.tagName][sz])) + sz_adjust[ch.tagName][sz]) / 2;
+      let ch_attrs = ch.attributes;
+      let pr_attrs = pr.attributes;
 
 
       if(ch.localName == "prompt") return 0;
       
-      if(pos in ch.attributes){
-        if(ch.attributes[pos].value == "center"){
-          if(pr.localName == "prompt"){
+      if(pos in ch.attributes) {
+        if(ch.attributes[pos].value == "center") {
+          if(pr.localName == "prompt") {
             final_pos = Math.floor(screen_properties[sz]/2 - chsz);
           }
           else {
@@ -250,7 +257,7 @@ function htmlConvert(){
         final_pos = 1 + get_pos(pr, pos);
       }
 
-      if(!(pos in ch.attributes) || ch.attributes[pos].value != "center"){
+      if(!(pos in ch.attributes) || ch.attributes[pos].value != "center") {
         final_pos += (`${pos}align` in ch.attributes && ch.attributes[`${pos}align`].value == dir?
                         (parseInt(get_attr(pr_attrs, sz, sz_def[pr.tagName][sz])) + sz_adjust[pr.tagName][sz])
                       - (parseInt(get_attr(ch_attrs, sz, sz_def[ch.tagName][sz])) + sz_adjust[ch.tagName][sz]) - 2: 0);
@@ -258,10 +265,10 @@ function htmlConvert(){
 
       return final_pos;
     };
-    let child_attrs = get_attrs(child);
+    let child_attrs = child.attributes;
 
     // disabling
-    let parent_disabled = (ch) => ch.parentElement.localName == "prompt"? false: 'disabled' in ch.parentElement.attributes? true: parent_disabled(ch.parentElement);
+    let parent_disabled = (ch) => ch.parentElement.localName == "prompt"? false: ch.parentElement.attributes.disabled? true: parent_disabled(ch.parentElement);
     let disabled = get_attr(child_attrs, 'disabled', false) == "true";
     if(disabled || parent_disabled(child)) return;
 
@@ -272,20 +279,20 @@ function htmlConvert(){
     let posX = get_pos(child, 'x');
     let posY = get_pos(child, 'y');
 
-    switch(child.tagName){
+    switch(child.tagName) {
       case 'DIV':
         // default keys
         var clip = get_attr(child_attrs, 'clip', false) == 'true';
         var type = get_attr(child_attrs, 'type', 'single');
 
-        if(type !== 'none'){
+        if(type !== 'none') {
           doBox(posX, posY, width, height, type, true, get_attr(child_attrs, 'border-color', false));
-          if('title' in child.attributes){
+          if(child.attributes.title) {
             var title = ` ${child.attributes.title.value} `;
             doText(title, posX+1, posY, width-1, 1, true, [type.includes('bold'), type.includes('double'), false, get_attr(child_attrs, 'border-color', false)]);
           }
         }
-        if('text' in child.attributes){
+        if(child.attributes.text) {
           var text = child.attributes.text.value;
           doText(text, posX+1, posY+1, width, height, clip, [false, false, false, get_attr(child_attrs, 'color', false)]);
         }
@@ -296,7 +303,7 @@ function htmlConvert(){
         // events
         let onclick = get_attr(child_attrs, 'onclick', false)? `onclick="${child.attributes.onclick.value}"`: '';
 
-        if('text' in child.attributes){
+        if(child.attributes.text) {
           var text = child.attributes.text.value;
           width    = text.length;
           height   = 1;
@@ -321,7 +328,7 @@ function htmlConvert(){
 
 
 // WAKE UP
-_documentready = setInterval((f)=>{if(document.readyState == "complete"){clearInterval(_documentready);delete _documentready;f();}}, 1, ()=>{
+_documentready = setInterval((f)=>{if(document.readyState == "complete") {clearInterval(_documentready);delete _documentready;f();}}, 1, ()=>{
   //get prompt element
   prompt_container = document.getElementsByTagName("prompt")[0];
   prompt_container.innerHTML += "<screen></screen>";
