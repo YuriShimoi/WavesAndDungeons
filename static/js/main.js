@@ -6,7 +6,7 @@
 function startGame(){
   setBaseColor("#ffffff");
 
-  delElement('start_button');
+  delElement('start_button', draw=false);
   newElement('div', {id:'title_case', type:'none', width:107, height:19, x:'center', y:'center'}, 'main', draw=false);
   newElement('div', {id:'title_p1',   type:'none', text:CHARSET_TITLE_1, width:105, height:7, x:'center', color:'#5de5ff'}, 'title_case', draw=false);
 
@@ -16,15 +16,15 @@ function startGame(){
       setTimeout(() => {
         delElement('title_case', {hidden: 'true'});
         showInterface();
-      }, 2000);
+      }, 1000);
     });
   });
 }
 
 function showInterface(){
-  newElement('div', {id:'inventory', type:'double', height:29, width:30}, 'main');
-  newElement('div', {id:'map', type:'double', height:29, width:100, xalign:'right'}, 'main');
-  newElement('div', {id:'sep1', type:'none', clip:'true', width:7, height:31, x:32, y:0, text:VERTICAL_SEPARATOR2}, 'main')
+  enableElement("profile", draw=false);
+  enableElement("map", draw=false);
+  changeElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR2});
 }
 
 

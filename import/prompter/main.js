@@ -86,6 +86,7 @@ function drawScreen() {
           openeds   += 'span';
         }
 
+        // TODO: evento não pode ser dependente de efeito visual
         if(is_effect[2] && effect[2] && !aeffect[2]) { // underline
           aeffect[2] = effect[2];
           html      += `<u ${screen_properties.decorator[y][x]?screen_properties.decorator[y][x]:''}>`;
