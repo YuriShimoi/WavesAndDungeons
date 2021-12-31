@@ -273,7 +273,7 @@ function htmlConvert() {
     let child_attrs = child.attributes;
 
     // disabling
-    let parent_disabled = (ch) => ch.parentElement.localName == "prompt"? false: ch.parentElement.attributes.disabled? true: parent_disabled(ch.parentElement);
+    let parent_disabled = (ch) => ch.parentElement.localName == "prompt"? false: ch.parentElement.attributes.disabled?.value === "true"? true: parent_disabled(ch.parentElement);
     let disabled = get_attr(child_attrs, 'disabled', false) == "true";
     if(disabled || parent_disabled(child)) return;
 
@@ -304,7 +304,7 @@ function htmlConvert() {
         break;
       case 'TEXT':
         // default keys
-        var type = get_attr(child_attrs, 'type', '');
+        var type = get_attr(child_attrs, 'type', '').toLowerCase();
         // events
         let onclick = get_attr(child_attrs, 'onclick', false)? `onclick="${child.attributes.onclick.value}"`: '';
 
@@ -314,7 +314,7 @@ function htmlConvert() {
           height   = 1;
           doText(text, posX, posY, width, height, true, {
             bold: type.includes('bold'), italic: type.includes('italic'), underline: type.includes('underline'),
-            color: get_attr(child_attrs, 'color', onclick != ''), event: onclick
+            color: get_attr(child_attrs, 'color', false), event: onclick
           });
         }
         break;

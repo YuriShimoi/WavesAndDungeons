@@ -4,8 +4,6 @@
 
 // FUNCTIONS
 function startGame(){
-  setBaseColor("#ffffff");
-
   delElement('start_button', draw=false);
   newElement('div', {id:'title_case', type:'none', width:107, height:19, x:'center', y:'center'}, 'main', draw=false);
   newElement('div', {id:'title_p1',   type:'none', text:CHARSET_TITLE_1, width:105, height:7, x:'center', color:'#5de5ff'}, 'title_case', draw=false);
@@ -24,15 +22,11 @@ function startGame(){
 function showInterface(){
   enableElement("profile", draw=false);
   enableElement("map", draw=false);
-  updateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR2});
+  updateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR2, 'color': 'lightgray'});
 }
 
 
 // TOOLS
-function setBaseColor(color){
-  document.getElementsByTagName("prompt")[0].setAttribute('style',`color:${color}`);
-}
-
 function diagonalBlinkDiv(eid, char="*", delay=50, angle=2, end_call=()=>{}){
   let el  = document.getElementById(eid);
   let txt = el.getAttribute("text");

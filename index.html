@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="static/css/style.css">
   </head>
   <body>
-    <prompt type="retro">
+    <prompt id="prompt">
       <!-- 149×29 => 1366×768 -->
-      <div type="none" id="main" x="center" y="center" width=141 height=31 border-color="white">
+      <div type="none" id="main" x="center" y="center" width=141 height=31>
         <text id="start_button" x="center" y="center" text="START" type="bold" color="#5de5ff" onclick="startGame()"></text>
         <div id="profile" type="double" height=29 width=30 disabled="true">
           <div id="status" type="none" y=0 x=0 width=30 height=8>
@@ -17,7 +17,7 @@
               <text text="STATUS" x="center" type="bold"></text>
             </div>
             <text text="------------------------------" y=3 color="lightgray"></text>
-            <text text="Health " y=3 color="white" type="bold"></text>
+            <text text="Health " y=3 type="bold"></text>
             <text id="status-health" text=" [50/100]" y=3 x=0 xalign="right"></text>
 
             <text y=4 text="[                            ]"></text>
@@ -25,15 +25,15 @@
             <progress id="status-health-bar" value=50 width=28 x=2 y=4 empty='' fill='#' color="#cc0000"></progress>
 
             <text text="------------------------------" y=6 color="lightgray"></text>
-            <text text="Crew " y=6 color="white" type="bold"></text>
+            <text text="Crew " y=6 type="bold"></text>
             <text id="status-crew"  text=" [10]" y=6 x=0 xalign="right"></text>
             
             <text text="------------------------------" y=7 color="lightgray"></text>
-            <text text="Food " y=7 color="white" type="bold"></text>
+            <text text="Food " y=7 type="bold"></text>
             <text id="status-food" text=" [500]" y=7 x=0 xalign="right"></text>
 
             <text text="------------------------------" y=8 color="lightgray"></text>
-            <text text="Wood " y=8 color="white" type="bold"></text>
+            <text text="Wood " y=8 type="bold"></text>
             <text id="status-wood"  text=" [40]" y=8 x=0 xalign="right"></text>
 
           </div>
@@ -44,7 +44,23 @@
           </div>
         </div>
         <div id="sep1" type="none" clip="true" width=7 height=31 x=32 y=0 text="" disabled="true"></div>
-        <div id="map" type="double" height=29 width=100 xalign="right" disabled="true"></div>
+        <div id="map" type="double" height=29 width=100 xalign="right" disabled="true">
+
+          <div id="minimap" type="bold" x="center" y="center" width=33 height=15 disabled="true"></div>
+          <div id="settings" type="bold" x="center" y="center" width=25 height=20 disabled="true">
+            <text text="THEME" x="center" type="bold"></text>
+            <text text=" black" y=2 onclick="updateElement('prompt', {type: 'default'})"></text>
+            <text text="retro " y=2 xalign="right" x=0 onclick="updateElement('prompt', {type: 'retro'})"></text>
+            <text text=" white" y=3 onclick="updateElement('prompt', {type: 'white'})"></text>
+            <text text="blueprint " y=3 xalign="right" x=0 onclick="updateElement('prompt', {type: 'blueprint'})"></text>
+          </div>
+
+          <div type="double" width=100 height=1 yalign="bottom" y=2 x=0>
+            <text text="                |                                                                        |" color="gray"></text>
+            <text text=" NAVIGATION MAP " type="bold" onclick="toggleElement('minimap')"></text>
+            <text text=" SETTINGS " x=0 xalign="right" type="bold" onclick="toggleElement('settings')"></text>
+          </div>
+        </div>
       </div>
     </prompt>
 
