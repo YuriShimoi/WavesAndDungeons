@@ -10,26 +10,36 @@
     <prompt type="retro">
       <!-- 149×29 => 1366×768 -->
       <div type="none" id="main" x="center" y="center" width=141 height=31 border-color="white">
-        <text id="start_button" x="center" y="center" text="START" color="#5de5ff" onclick="startGame()"></text>
+        <text id="start_button" x="center" y="center" text="START" type="bold" color="#5de5ff" onclick="startGame()"></text>
         <div id="profile" type="double" height=29 width=30 disabled="true">
           <div id="status" type="none" y=0 x=0 width=30 height=8>
             <div type="double" y=0 x=0 width=30 height=1>
-              <text text="STATUS" x="center"></text>
+              <text text="STATUS" x="center" type="bold"></text>
             </div>
-            <text text="Health -----------------------" y=3 color="gray"></text>
+            <text text="------------------------------" y=3 color="lightgray"></text>
+            <text text="Health " y=3 color="white" type="bold"></text>
             <text id="status-health" text=" [50/100]" y=3 x=0 xalign="right"></text>
+
             <text y=4 text="[                            ]"></text>
-            <progress id="status-health-bar" value=50 width=28 x=2 y=4 empty='∙' fill='#' color="#cc0000"></progress>
-            <text text="Crew -------------------------" y=6 color="gray"></text>
+            <text y=4 text="∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙" x=2 color="gray"></text>
+            <progress id="status-health-bar" value=50 width=28 x=2 y=4 empty='' fill='#' color="#cc0000"></progress>
+
+            <text text="------------------------------" y=6 color="lightgray"></text>
+            <text text="Crew " y=6 color="white" type="bold"></text>
             <text id="status-crew"  text=" [10]" y=6 x=0 xalign="right"></text>
-            <text text="Food -------------------------" y=7 color="gray"></text>
+            
+            <text text="------------------------------" y=7 color="lightgray"></text>
+            <text text="Food " y=7 color="white" type="bold"></text>
             <text id="status-food" text=" [500]" y=7 x=0 xalign="right"></text>
-            <text text="Wood -------------------------" y=8 color="gray"></text>
+
+            <text text="------------------------------" y=8 color="lightgray"></text>
+            <text text="Wood " y=8 color="white" type="bold"></text>
             <text id="status-wood"  text=" [40]" y=8 x=0 xalign="right"></text>
+
           </div>
           <div id="inventory" type="none" y=2 x=0 width=30 height=20 yalign="bottom">
             <div type="double" y=0 x=0 width=30 height=1>
-              <text text="INVENTORY" x="center"></text>
+              <text text="INVENTORY" x="center" type="bold"></text>
             </div>
           </div>
         </div>
