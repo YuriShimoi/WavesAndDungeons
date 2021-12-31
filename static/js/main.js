@@ -24,7 +24,7 @@ function startGame(){
 function showInterface(){
   enableElement("profile", draw=false);
   enableElement("map", draw=false);
-  changeElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR2});
+  updateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR2});
 }
 
 
@@ -43,7 +43,7 @@ function diagonalBlinkDiv(eid, char="*", delay=50, angle=2, end_call=()=>{}){
   let interval = setInterval(() => {
     if(step++ >= wid+(hei*angle)) {
       clearInterval(interval);
-      changeElement(eid, {text: txt});
+      updateElement(eid, {text: txt});
       end_call();
       return;
     }
@@ -60,6 +60,6 @@ function diagonalBlinkDiv(eid, char="*", delay=50, angle=2, end_call=()=>{}){
       btext += ' '.repeat((wid*(y+1)) - (ypos+1));
     }
     
-    changeElement(eid, {text: btext});
+    updateElement(eid, {text: btext});
   }, delay);
 }
