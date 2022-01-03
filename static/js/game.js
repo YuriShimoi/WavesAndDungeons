@@ -8,6 +8,7 @@ function updateStatus() {
 }
 
 function updateMap(mapping) {
-    updateElement("minimap", {text: mapping});
+    let textMap = new Array(mapping.length * mapping[0].length).fill('[-]').join('');
+    updateElement("minimap", {text: textMap});
 }
 
