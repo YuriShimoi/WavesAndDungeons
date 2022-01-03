@@ -4,5 +4,10 @@ function updateStatus() {
     updateElement("status-crew", {text:`[${player.ship.crew}]`}, false);
     updateElement("status-food", {text:`[${player.food}]`}, false);
     updateElement("status-wood", {text:`[${player.wood}]`}, false);
-    updateElement("status-gold", {text:`[${player.gold}]`}, false);
+    updateElement("status-gold", {text:`[${player.gold}]`});
 }
+
+function updateMap(mapping) {
+    updateElement("minimap", {text: mapping});
+}
+

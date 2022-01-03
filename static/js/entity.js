@@ -21,12 +21,10 @@ class Ship {
         return this.crew * (1 + (this.level / 5) + damageBonus);
     }
 }
-
-
-class NPCShip {
+class NPCShip extends Ship {
     _treasure = null;
     constructor(type, level) {
-        this.ship = new Ship(type, level);
+        super(type, level);
     }
 }
 
@@ -47,7 +45,7 @@ class Treasure {
 }
 
 
-class Village {
+class City {
     _treasure  = null;
     _merchants = [];
     constructor(level) {
@@ -68,6 +66,33 @@ class NPCMerchant {
 
     }
 }
+
+
+class Creature {
+    constructor() {
+        
+    }
+}
+class SeaCreature extends Creature {
+    constructor() {
+
+    }
+}
+
+
+class Dungeon {
+    constructor() {
+
+    }
+}
+class SeaDungeon extends Dungeon {
+    constructor() {
+        
+    }
+}
+
+
+
 
 
 class Player {

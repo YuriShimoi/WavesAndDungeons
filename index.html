@@ -77,6 +77,17 @@
         <div id="sep1" type="none" clip="true" width=7 height=31 x=32 y=0 text="" disabled="true"></div>
         
         <div id="map" type="double" height=29 width=100 xalign="right" disabled="true">
+          <text text="----------------------------------------------------------------------------------------------------" yalign="bottom" y=-2></text>
+
+          <div type="double" width=100 height=1 yalign="bottom" y=2 x=0>
+            <text text="                |                                                                        |" color="gray"></text>
+            <text text=" NAVIGATION MAP " type="bold" onclick="toggleElement('minimap')"></text>
+            <text text=" SETTINGS " x=0 xalign="right" type="bold" onclick="toggleElement('settings')"></text>
+          </div>
+
+
+          <!-- FLOATING WINDOWS -->
+          
           <div id="minimap" type="bold" x="center" y="center" width=50 height=20 disabled="true"></div>
 
           <div id="settings" type="bold" x="center" y="center" width=25 height=22 disabled="true">
@@ -87,11 +98,6 @@
             <text text="blueprint " y=3 xalign="right" x=0 onclick="updateElement('prompt', {type: 'blueprint'})"></text>
           </div>
 
-          <div type="double" width=100 height=1 yalign="bottom" y=2 x=0>
-            <text text="                |                                                                        |" color="gray"></text>
-            <text text=" NAVIGATION MAP " type="bold" onclick="toggleElement('minimap')"></text>
-            <text text=" SETTINGS " x=0 xalign="right" type="bold" onclick="toggleElement('settings')"></text>
-          </div>
         </div>
       </div>
     </prompt>
