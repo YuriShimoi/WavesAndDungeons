@@ -33,7 +33,7 @@ function chooseClass(type) {
 function showInterface(){
   enableElement("profile", draw=false);
   enableElement("map", draw=false);
-  updateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR2, 'color': 'lightgray'});
+  updateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR1, 'color': 'lightgray'});
 }
 
 
