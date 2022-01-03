@@ -1,5 +1,5 @@
 // VARIABLES
-
+let player = null;
 
 
 // FUNCTIONS
@@ -13,10 +13,21 @@ function startGame(){
     diagonalBlinkDiv('title_p2', '*', 5, 2, () => {
       setTimeout(() => {
         delElement('title_case', {hidden: 'true'});
-        showInterface();
+        showClassWindow();
       }, 1000);
     });
   });
+}
+
+function showClassWindow() {
+  enableElement("chooseClass");
+}
+
+function chooseClass(type) {
+  player = new Player(type);
+  updateStatus();
+  disableElement("chooseClass");
+  showInterface();
 }
 
 function showInterface(){

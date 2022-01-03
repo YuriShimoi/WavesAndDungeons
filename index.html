@@ -4,15 +4,42 @@
     <meta charset="UTF-8">
     <title>WavesAndDungeons</title>
 
+    <!-- lib import -->
+    <script src="import/prompter/main.js" charset="utf-8"></script>
+
     <link rel="stylesheet" href="static/css/style.css">
+    <script src="static/js/asciiart.js"></script>
+    <script src="static/js/entity.js"></script>
+    <script src="static/js/game.js"></script>
+    <script src="static/js/main.js"></script>
   </head>
   <body>
     <prompt id="prompt">
       <!-- 149×29 => 1366×768 -->
       <div type="none" id="main" x="center" y="center" width=141 height=31>
         <text id="start_button" x="center" y="center" text="START" type="bold" color="#5de5ff" onclick="startGame()"></text>
+        <div id="chooseClass" type="double" y="center" x="center" width=30 height=18 disabled="true">
+          <text text="Choose Your Class" x="center" type="bold"></text>
+          <text text="Adventurous" y=3 type="underline bold" color="var(--blue)" x="center" onclick="chooseClass('Adventurous')"></text>
+          <text text="[Risky]      -20% Crew"     x=2 y=4></text>
+          <text text="[Obstinated] +20% Health"   x=2 y=5></text>
+          <text text="[Lucky]      +10% Treasure" x=2 y=6></text>
+
+          <text text="Pirate" y=8 type="underline bold" color="var(--blue)" x="center" onclick="chooseClass('Pirate')"></text>
+          <text text="[Veteran]  +20% Damage"      x=2 y=9></text>
+          <text text="           Start in level 3" x=2 y=10></text>
+          <text text="[Alliance] Pirate ally"      x=2 y=11></text>
+          <text text="[Bandit]   Marine enemy"     x=2 y=12></text>
+          
+          <text text="Merchant" y=14 type="underline bold" color="var(--blue)" x="center" onclick="chooseClass('Merchant')"></text>
+          <text text="[Petty] -10% Buy price"       x=2 y=15></text>
+          <text text="        +20% Sell price"      x=2 y=16></text>
+          <text text="[VIP]   Free cities entrance" x=2 y=17></text>
+          <text text="[Juicy] +10% Attract pirates" x=2 y=18></text>
+        </div>
+
         <div id="profile" type="double" height=29 width=30 disabled="true">
-          <div id="status" type="none" y=0 x=0 width=30 height=8>
+          <div id="status" type="none" y=0 x=0 width=30 height=9>
             <div type="double" y=0 x=0 width=30 height=1>
               <text text="STATUS" x="center" type="bold"></text>
             </div>
@@ -22,11 +49,11 @@
 
             <text y=4 text="[                            ]"></text>
             <text y=4 text="∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙" x=2 color="gray"></text>
-            <progress id="status-health-bar" value=50 width=28 x=2 y=4 empty='' fill='#' color="#cc0000"></progress>
+            <progress id="status-health-bar" value=50 max=100 width=28 x=2 y=4 empty='' fill='#' color="#cc0000"></progress>
 
             <text text="------------------------------" y=6 color="lightgray"></text>
             <text text="Crew " y=6 type="bold"></text>
-            <text id="status-crew"  text=" [10]" y=6 x=0 xalign="right"></text>
+            <text id="status-crew" text=" [10]" y=6 x=0 xalign="right"></text>
             
             <text text="------------------------------" y=7 color="lightgray"></text>
             <text text="Food " y=7 type="bold"></text>
@@ -34,19 +61,24 @@
 
             <text text="------------------------------" y=8 color="lightgray"></text>
             <text text="Wood " y=8 type="bold"></text>
-            <text id="status-wood"  text=" [40]" y=8 x=0 xalign="right"></text>
+            <text id="status-wood" text=" [40]" y=8 x=0 xalign="right"></text>
 
+            <text text="------------------------------" y=9 color="lightgray"></text>
+            <text text="Gold " y=9 type="bold" color="#ee9f01"></text>
+            <text id="status-gold" text=" [0]" y=9 x=0 xalign="right" color="#ee9f01"></text>
           </div>
-          <div id="inventory" type="none" y=2 x=0 width=30 height=20 yalign="bottom">
+          <div id="inventory" type="none" y=2 x=0 width=30 height=19 yalign="bottom">
             <div type="double" y=0 x=0 width=30 height=1>
               <text text="INVENTORY" x="center" type="bold"></text>
             </div>
           </div>
         </div>
-        <div id="sep1" type="none" clip="true" width=7 height=31 x=32 y=0 text="" disabled="true"></div>
-        <div id="map" type="double" height=29 width=100 xalign="right" disabled="true">
 
-          <div id="minimap" type="bold" x="center" y="center" width=33 height=15 disabled="true"></div>
+        <div id="sep1" type="none" clip="true" width=7 height=31 x=32 y=0 text="" disabled="true"></div>
+        
+        <div id="map" type="double" height=29 width=100 xalign="right" disabled="true">
+          <div id="minimap" type="bold" x="center" y="center" width=50 height=20 disabled="true"></div>
+
           <div id="settings" type="bold" x="center" y="center" width=25 height=20 disabled="true">
             <text text="THEME" x="center" type="bold"></text>
             <text text=" black" y=2 onclick="updateElement('prompt', {type: 'default'})"></text>
@@ -63,11 +95,5 @@
         </div>
       </div>
     </prompt>
-
-    <!-- lib import -->
-    <script src="import/prompter/main.js" charset="utf-8"></script>
-
-    <script src="static/js/asciiart.js"></script>
-    <script src="static/js/main.js"></script>
   </body>
 </html>
