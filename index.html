@@ -14,7 +14,7 @@
     <script src="static/js/main.js"></script>
   </head>
   <body>
-    <prompt id="prompt">
+    <prompt id="prompt" debug>
       <!-- 149×29 => 1366×768 -->
       <div type="none" id="main" x="center" y="center" width=141 height=31>
         <text id="start_button" x="center" y="center" text="START" type="bold" color="#5de5ff" onclick="startGame()"></text>
@@ -40,9 +40,8 @@
 
         <div id="profile" type="double" height=29 width=30 disabled="true">
           <div id="status" type="none" y=0 x=0 width=30 height=9>
-            <div type="double" y=0 x=0 width=30 height=1>
-              <text text="STATUS" x="center" type="bold"></text>
-            </div>
+            <text text="STATUS" x="center" type="bold"></text>
+            <hr y=2 type="bold" width=30>
             <hr fill="-" width=28 x=2 y=3 color="lightgray">
             <text text="Health " y=3 type="bold"></text>
             <text id="status-health" text=" [50/100]" y=3 x=0 xalign="right"></text>
@@ -67,17 +66,18 @@
             <text text="Gold " y=9 type="bold" color="#ee9f01"></text>
             <text id="status-gold" text=" [0]" y=9 x=0 xalign="right" color="#ee9f01"></text>
           </div>
-          <div id="inventory" type="none" y=2 x=0 width=30 height=19 yalign="bottom">
-            <div type="double" y=0 x=0 width=30 height=1>
-              <text text="INVENTORY" x="center" type="bold"></text>
-            </div>
+          <div id="inventory" type="double" y=2 x=0 width=30 height=19 yalign="bottom">
+            <text text="INVENTORY" x="center" type="bold"></text>
+            <hr y=2 type="bold" width=30>
           </div>
         </div>
 
         <div id="sep1" type="none" clip="true" width=7 height=31 x=32 y=0 text="" disabled="true"></div>
         
         <div id="map" type="double" height=29 width=100 xalign="right" disabled="true">
-          <hr width=100 yalign="bottom" color="lightgray" fill="-" y=-2>
+          <div id="islandView" type="none" height=25 width=100 x=0 y=0></div>
+
+          <hr width=100 yalign="bottom" color="lightgray" fill="╌" y=-2>
 
           <div type="double" width=100 height=1 yalign="bottom" y=2 x=0>
             <text text="                |                                                                        |" color="lightgray"></text>

@@ -7,8 +7,18 @@ function updateStatus() {
     updateElement("status-gold", {text:` [${player.gold}]`});
 }
 
-function updateMap(mapping) {
-    let textMap = new Array(mapping.length * mapping[0].length).fill('[-]').join('');
+function updateMinimap(mapping) {
+    let textMap = new Array(mapping.length * mapping[0].length).fill(`[${WHITESPACE}]`).join('');
     updateElement("minimap", {text: textMap});
 }
 
+function updateMapView(mapping) {
+    let textMap = "";
+    for(let y=0; y < mapping.length; y++) {
+        for(let x=0; x < mapping[y].length; x++) {
+            textMap += mapping[y][x] == 1? '██': WHITESPACE+WHITESPACE;
+        }
+    }
+
+    updateElement("islandView", {text: textMap});
+}
