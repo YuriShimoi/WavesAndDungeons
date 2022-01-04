@@ -25,7 +25,7 @@ function showClassWindow() {
 
 function chooseClass(type) {
     player = new Player(type);
-    updateStatus();
+    Interface.Status.updateStatus();
     disableElement("chooseClass");
     showInterface();
 }
@@ -35,11 +35,10 @@ function showInterface(){
     enableElement("map", draw=false);
     updateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR1, 'color': 'lightgray'});
 
-    let mapping = new Array(17).fill(new Array(21));
-    updateMinimap(mapping);
+    Interface.Minimap.startMinimap();
 
-    let island = new Island(8);
-    updateMapView(island.mapping);
+    let island = new Island(1);
+    Interface.Map.updateMapView(island.mapping);
 }
 
 

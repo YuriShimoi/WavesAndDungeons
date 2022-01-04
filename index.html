@@ -14,7 +14,7 @@
     <script src="static/js/main.js"></script>
   </head>
   <body>
-    <prompt id="prompt" debug>
+    <prompt id="prompt">
       <!-- 149×29 => 1366×768 -->
       <div type="none" id="main" x="center" y="center" width=141 height=31>
         <text id="start_button" x="center" y="center" text="START" type="bold" color="#5de5ff" onclick="startGame()"></text>
@@ -75,7 +75,7 @@
         <div id="sep1" type="none" clip="true" width=7 height=31 x=32 y=0 text="" disabled="true"></div>
         
         <div id="map" type="double" height=29 width=100 xalign="right" disabled="true">
-          <div id="islandView" type="none" height=25 width=100 x=0 y=0></div>
+          <div id="islandView" type="none" height=25 width=100 x=0 y=0 style="text-shadow:1px 0 0 var(--color)"></div>
 
           <hr width=100 yalign="bottom" color="lightgray" fill="╌" y=-2>
 
@@ -92,10 +92,10 @@
 
           <div id="settings" type="bold" x="center" y="center" width=25 height=23 disabled="true">
             <text text="THEME" x="center" type="bold"></text>
-            <text text=" black" y=2 onclick="updateElement('prompt', {type: 'default'})"></text>
-            <text text="retro " y=2 xalign="right" x=0 onclick="updateElement('prompt', {type: 'retro'})"></text>
-            <text text=" white" y=3 onclick="updateElement('prompt', {type: 'white'})"></text>
-            <text text="blueprint " y=3 xalign="right" x=0 onclick="updateElement('prompt', {type: 'blueprint'})"></text>
+            <text text=" black" y=2 onclick="updateElement('prompt', {type: 'default'}, false)"></text>
+            <text text="retro " y=2 xalign="right" x=0 onclick="updateElement('prompt', {type: 'retro'}, false)"></text>
+            <text text=" white" y=3 onclick="updateElement('prompt', {type: 'white'}, false)"></text>
+            <text text="blueprint " y=3 xalign="right" x=0 onclick="updateElement('prompt', {type: 'blueprint'}, false)"></text>
           </div>
 
         </div>

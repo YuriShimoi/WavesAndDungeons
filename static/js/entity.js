@@ -28,6 +28,13 @@ class NPCShip extends Ship {
     }
 }
 
+class City {
+    _treasure  = null;
+    _merchants = [];
+    constructor(level) {
+        this.level = level;
+    }
+}
 
 class Island {
     static _mapSize = { 'x':50, 'y':25 };
@@ -35,14 +42,14 @@ class Island {
     _treasures = [];
     _villages  = [];
     constructor(size) {
-        this.size = size;
+        this.size = size > 8? 8: size;
         this.mapping = this._generateMap();
     }
 
     _generateMap() {
         let radius = Math.ceil(this.size/2 * 3);
 
-        let spreadAmount  = 120;
+        let spreadAmount  = 70;
         let islandMapping = new Array(Island._mapSize.y).fill('').map(_ => new Array(Island._mapSize.x).fill(0));
 
         // circles
@@ -54,17 +61,29 @@ class Island {
             spreadAmount += circleRadius*20;
             islandMapping = this._fillCircleMap(islandMapping, (Island._mapSize.x/2)-(radius/1.3), Island._mapSize.y/2, circleRadius);
             islandMapping = this._fillCircleMap(islandMapping, (Island._mapSize.x/2)+(radius/1.3), Island._mapSize.y/2, circleRadius);
-
-            if(circleRadius > 5) // extra center circle
-                islandMapping = this._fillCircleMap(islandMapping, Island._mapSize.x/2, Island._mapSize.y/2, Math.ceil(circleRadius/1.8));
-
+            
             // extra noise
-            islandMapping = this._spreadNoiseMap(islandMapping, radius*2+8, radius*2+40, spreadAmount/3, 0);
+            islandMapping = this._spreadNoiseMap(islandMapping, radius*2+8, radius*2+40, spreadAmount/4, 0);
+
+            if(circleRadius > 5) {
+                // extra center circle
+                islandMapping = this._fillCircleMap(islandMapping, Island._mapSize.x/2, Island._mapSize.y/2, Math.ceil(circleRadius/1.8));
+                // extra noise
+                islandMapping = this._spreadNoiseMap(islandMapping, radius*2+8, radius*2+20, spreadAmount/4, 0);
+            }
         }
 
         // noise
         islandMapping = this._spreadNoiseMap(islandMapping, radius*2+8, radius*2+40, spreadAmount);
         islandMapping = this._spreadNoiseMap(islandMapping, radius*2+5, radius*2+15, (spreadAmount*0.7));
+
+        // counter noise
+        if(radius > 5) {
+            islandMapping = this._spreadNoiseMap(islandMapping, radius*2+8, radius*2+40, spreadAmount/3, 0);
+            if(radius > 8) {
+                islandMapping = this._spreadNoiseMap(islandMapping, radius*2+8, radius*2+20, spreadAmount/3, 0);
+            }
+        }
 
         // smooth
         islandMapping = this._mapSmoother(islandMapping, ['1', '0'], ['0']);
@@ -88,12 +107,20 @@ class Island {
     }
 
     _spreadNoiseMap(islandMapping, width, height, spreadAmount=50, spreadValue=1) {
-        for(let rndi=0; rndi < spreadAmount; rndi++) {
+        let rndi    = 0;
+        let limiter = 0;
+
+        while(rndi < spreadAmount || limiter >= 1000) {
             let rndy = Math.floor(Math.random() *  width) + parseInt(Island._mapSize.y/2 -  width/2);
             let rndx = Math.floor(Math.random() * height) + parseInt(Island._mapSize.x/2 - height/2);
             if((rndy <= 0 || rndy >= Island._mapSize.y-1) || (rndx <= 0 || rndx >= Island._mapSize.x-1)) continue;
-            islandMapping[rndy][rndx] = spreadValue;
+            limiter++;
+            if(islandMapping[rndy][rndx] != spreadValue) {
+                islandMapping[rndy][rndx] = spreadValue;
+                rndi++;
+            }
         }
+
         return islandMapping;
     }
 
@@ -136,22 +163,11 @@ class Island {
     }
 }
 
-
 class Treasure {
     constructor() {
 
     }
 }
-
-
-class City {
-    _treasure  = null;
-    _merchants = [];
-    constructor(level) {
-        this.level = level;
-    }
-}
-
 
 class NPCMerchant {
     _selling = [];
@@ -166,7 +182,6 @@ class NPCMerchant {
     }
 }
 
-
 class Creature {
     constructor() {
         
@@ -177,7 +192,6 @@ class SeaCreature extends Creature {
 
     }
 }
-
 
 class Dungeon {
     constructor() {
