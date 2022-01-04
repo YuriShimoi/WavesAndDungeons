@@ -37,19 +37,25 @@ class Interface {
             let textMap = "";
             for(let y=0; y < Interface.Minimap.minimap.mapping.length; y++) {
                 for(let x=0; x < Interface.Minimap.minimap.mapping[y].length; x++) {
-                    textMap += `[${Interface.Minimap.minimap.mapping[y][x]}]`;
+                    switch(Interface.Minimap.minimap.mapping[y][x]) {
+                        case 0:
+                            textMap += `[${Interface.Minimap.minimap.charmap.none}]`;
+                            break;
+                        default:
+                            textMap += `[${Interface.Minimap.minimap.mapping[y][x]}]`;
+                    }
                 }
             }
-            updateElement("minimap", {text: textMap});
+            updateElement("minimap-cells", {text: textMap});
         }
         
         static startMinimap(playerX=Interface.Minimap.minimap.size.x/2, playerY=Interface.Minimap.minimap.size.y/2) {
             Interface.Minimap.minimap.mapping = new Array(Interface.Minimap.minimap.size.y).fill('')
-                                        .map(_ => new Array(Interface.Minimap.minimap.size.x).fill(Interface.Minimap.minimap.charmap.none));
+                                        .map(_ => new Array(Interface.Minimap.minimap.size.x).fill(0));
     
-            playerX = Math.ceil(playerX) - 1;
-            playerY = Math.ceil(playerY) - 1;
-            Interface.Minimap.minimap.mapping[playerY][playerX] = Interface.Minimap.minimap.charmap.player;
+            playerX = Math.ceil(playerX)*3 - 1;
+            playerY = Math.ceil(playerY);
+            updateElement('minimap-player', { text: Interface.Minimap.minimap.charmap.player, x: playerX, y: playerY }, false);
     
             Interface.Minimap.updateMinimap();
         }
