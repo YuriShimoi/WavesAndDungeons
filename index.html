@@ -42,31 +42,36 @@
           <div id="status" type="none" y=0 x=0 width=30 height=9>
             <text text="STATUS" x="center" type="bold"></text>
             <hr y=2 type="bold" width=30>
+
             <hr fill="-" width=28 x=2 y=3 color="lightgray">
-            <text text="Health " y=3 type="bold"></text>
-            <text id="status-health" text=" [50/100]" y=3 x=0 xalign="right"></text>
+            <text text="Level " y=3 type="bold"></text>
+            <text id="status-level" text=" [1]" y=3 x=0 xalign="right"></text>
 
-            <text y=4 text="[                            ]"></text>
-            <hr y=4 fill="∙" width=28 x=2 color="gray">
-            <progress id="status-health-bar" value=50 max=100 width=28 x=2 y=4 empty='' fill='#' color="#cc0000"></progress>
+            <hr fill="-" width=28 x=2 y=4 color="lightgray">
+            <text text="Health " y=4 type="bold"></text>
+            <text id="status-health" text=" [50/100]" y=4 x=0 xalign="right"></text>
 
-            <hr fill="-" width=28 x=2 y=6 color="lightgray">
-            <text text="Crew " y=6 type="bold"></text>
-            <text id="status-crew" text=" [10]" y=6 x=0 xalign="right"></text>
-            
+            <text y=5 text="[                            ]"></text>
+            <hr y=5 fill="∙" width=28 x=2 color="gray">
+            <progress id="status-health-bar" value=50 max=100 width=28 x=2 y=5 empty='' fill='#' color="#cc0000"></progress>
+
             <hr fill="-" width=28 x=2 y=7 color="lightgray">
-            <text text="Food " y=7 type="bold"></text>
-            <text id="status-food" text=" [500]" y=7 x=0 xalign="right"></text>
-
+            <text text="Crew " y=7 type="bold"></text>
+            <text id="status-crew" text=" [10]" y=7 x=0 xalign="right"></text>
+            
             <hr fill="-" width=28 x=2 y=8 color="lightgray">
-            <text text="Wood " y=8 type="bold"></text>
-            <text id="status-wood" text=" [40]" y=8 x=0 xalign="right"></text>
+            <text text="Food " y=8 type="bold"></text>
+            <text id="status-food" text=" [500]" y=8 x=0 xalign="right"></text>
 
             <hr fill="-" width=28 x=2 y=9 color="lightgray">
-            <text text="Gold " y=9 type="bold" color="#ee9f01"></text>
-            <text id="status-gold" text=" [0]" y=9 x=0 xalign="right" color="#ee9f01"></text>
+            <text text="Wood " y=9 type="bold"></text>
+            <text id="status-wood" text=" [40]" y=9 x=0 xalign="right"></text>
+
+            <hr fill="-" width=28 x=2 y=10 color="lightgray">
+            <text text="Gold " y=10 type="bold" color="#ee9f01"></text>
+            <text id="status-gold" text=" [0]" y=10 x=0 xalign="right" color="#ee9f01"></text>
           </div>
-          <div id="inventory" type="double" y=2 x=0 width=30 height=19 yalign="bottom">
+          <div id="inventory" type="double" y=2 x=0 width=30 height=18 yalign="bottom">
             <text text="INVENTORY" x="center" type="bold"></text>
             <hr y=2 type="bold" width=30>
           </div>
@@ -76,7 +81,7 @@
         
         <div id="map" type="double" height=29 width=100 xalign="right" disabled="true">
           <div id="islandView" type="none" height=25 width=100 x=0 y=0 style="text-shadow:1px 0 0 var(--color)"></div>
-          <text text="[ISLAND NAME]" x="center"></text>
+          <text id="map-island-name" text="[ISLAND NAME]" x="center"></text>
 
           <hr width=100 yalign="bottom" color="lightgray" fill="╌" y=-2>
 
@@ -91,7 +96,7 @@
           <!-- FLOATING WINDOWS -->
           
           <div id="minimap-window" type="bold" x="center" y="center" width=51 height=21 disabled="true"> <!-- 17x21 -->
-            <div id="minimap-cells" x=0 y=0 width=51 height=21 color="gray"></div>
+            <div id="minimap-cells" type="none" x=0 y=0 width=51 height=21 color="gray"></div>
             <text id="minimap-player" text="" x=0 y=0></text>
           </div>
 

@@ -1,6 +1,7 @@
 class Interface {
     static Status = class InterfaceStatus {
         static updateStatus() {
+            updateElement("status-level", {text:` [${player.ship.level}]`}, false);
             updateElement("status-health", {text:` [${player.ship.health}/${player.ship.maxHealth}]`}, false);
             updateElement("status-health-bar", {value:player.ship.health, max:player.ship.maxHealth}, false);
             updateElement("status-crew", {text:` [${player.ship.crew}]`}, false);
