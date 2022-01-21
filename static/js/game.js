@@ -1,17 +1,26 @@
 class Interface {
     static Status = class InterfaceStatus {
-        static updateStatus() {
-            updateElement("status-level", {text:` [${player.ship.level}]`}, false);
-            updateElement("status-health", {text:` [${player.ship.health}/${player.ship.maxHealth}]`}, false);
-            updateElement("status-health-bar", {value:player.ship.health, max:player.ship.maxHealth}, false);
-            updateElement("status-crew", {text:` [${player.ship.crew}]`}, false);
-            updateElement("status-food", {text:` [${player.food}]`}, false);
-            updateElement("status-wood", {text:` [${player.wood}]`}, false);
-            updateElement("status-gold", {text:` [${player.gold}]`});
+        static startVariables() {
+            GLOBAL_VARIABLE_REGISTER["player"] = player;
+        }
+
+        static update() {
+            // updateElement("status-level", {text:` [${player.ship.level}]`}, draw=false);
+            // updateElement("status-health", {text:` [${player.ship.health}/${player.ship.maxHealth}]`}, draw=false);
+            updateElement("status-health-bar", {value:player.ship.health, max:player.ship.maxHealth}, draw=false);
+            // updateElement("status-crew", {text:` [${player.ship.crew}]`}, draw=false);
+            // updateElement("status-food", {text:` [${player.food}]`}, draw=false);
+            // updateElement("status-wood", {text:` [${player.wood}]`}, draw=false);
+            // updateElement("status-gold", {text:` [${player.gold}]`}, draw=false);
         }
     }
 
     static Map = class InterfaceMap {
+        static islandName = "ISLAND NAME";
+        static startVariables() {
+            GLOBAL_VARIABLE_REGISTER["island_name"] = InterfaceMap.islandName;
+        }
+
         static updateMapView(IslandMapping) {
             let textMap = "";
             for(let y=0; y < IslandMapping.length; y++) {
@@ -20,7 +29,7 @@ class Interface {
                 }
             }
         
-            updateElement("islandView", {text: textMap});
+            updateElement("islandView", {text: textMap}, draw=false);
         }
     }
 
@@ -47,7 +56,7 @@ class Interface {
                     }
                 }
             }
-            updateElement("minimap-cells", {text: textMap});
+            updateElement("minimap-cells", {text: textMap}, draw=false);
         }
         
         static startMinimap(playerX=Interface.Minimap.minimap.size.x/2, playerY=Interface.Minimap.minimap.size.y/2) {
@@ -56,7 +65,7 @@ class Interface {
     
             playerX = Math.ceil(playerX)*3 - 1;
             playerY = Math.ceil(playerY);
-            updateElement('minimap-player', { text: Interface.Minimap.minimap.charmap.player, x: playerX, y: playerY }, false);
+            updateElement('minimap-player', { text: Interface.Minimap.minimap.charmap.player, x: playerX, y: playerY }, draw=false);
     
             Interface.Minimap.updateMinimap();
         }

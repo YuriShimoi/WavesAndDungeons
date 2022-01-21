@@ -45,11 +45,11 @@
 
             <hr fill="-" width=28 x=2 y=3 color="lightgray">
             <text text="Level " y=3 type="bold"></text>
-            <text id="status-level" text=" [1]" y=3 x=0 xalign="right"></text>
+            <text id="status-level" text=" [${player.ship.level}]" y=3 x=0 xalign="right"></text>
 
             <hr fill="-" width=28 x=2 y=4 color="lightgray">
             <text text="Health " y=4 type="bold"></text>
-            <text id="status-health" text=" [50/100]" y=4 x=0 xalign="right"></text>
+            <text id="status-health" text=" [${player.ship.health}/${player.ship.maxHealth}]" y=4 x=0 xalign="right"></text>
 
             <text y=5 text="[                            ]"></text>
             <hr y=5 fill="∙" width=28 x=2 color="gray">
@@ -57,19 +57,19 @@
 
             <hr fill="-" width=28 x=2 y=7 color="lightgray">
             <text text="Crew " y=7 type="bold"></text>
-            <text id="status-crew" text=" [10]" y=7 x=0 xalign="right"></text>
+            <text id="status-crew" text=" [${player.ship.crew}]" y=7 x=0 xalign="right"></text>
             
             <hr fill="-" width=28 x=2 y=8 color="lightgray">
             <text text="Food " y=8 type="bold"></text>
-            <text id="status-food" text=" [500]" y=8 x=0 xalign="right"></text>
+            <text id="status-food" text=" [${player.food}]" y=8 x=0 xalign="right"></text>
 
             <hr fill="-" width=28 x=2 y=9 color="lightgray">
             <text text="Wood " y=9 type="bold"></text>
-            <text id="status-wood" text=" [40]" y=9 x=0 xalign="right"></text>
+            <text id="status-wood" text=" [${player.wood}]" y=9 x=0 xalign="right"></text>
 
             <hr fill="-" width=28 x=2 y=10 color="lightgray">
             <text text="Gold " y=10 type="bold" color="#ee9f01"></text>
-            <text id="status-gold" text=" [0]" y=10 x=0 xalign="right" color="#ee9f01"></text>
+            <text id="status-gold" text=" [${player.gold}]" y=10 x=0 xalign="right" color="#ee9f01"></text>
           </div>
           <div id="inventory" type="double" y=2 x=0 width=30 height=18 yalign="bottom">
             <text text="INVENTORY" x="center" type="bold"></text>
@@ -81,7 +81,7 @@
         
         <div id="map" type="double" height=29 width=100 xalign="right" disabled="true">
           <div id="islandView" type="none" height=25 width=100 x=0 y=0 style="text-shadow:1px 0 0 var(--color)"></div>
-          <text id="map-island-name" text="[ISLAND NAME]" x="center"></text>
+          <text id="map-island-name" text="[${island_name}]" x="center"></text>
 
           <hr width=100 yalign="bottom" color="lightgray" fill="╌" y=-2>
 

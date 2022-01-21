@@ -25,7 +25,6 @@ function showClassWindow() {
 
 function chooseClass(type) {
     player = new Player(type);
-    Interface.Status.updateStatus();
     disableElement("chooseClass");
     showInterface();
 }
@@ -33,12 +32,17 @@ function chooseClass(type) {
 function showInterface(){
     enableElement("profile", draw=false);
     enableElement("map", draw=false);
-    updateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR1, 'color': 'lightgray'});
+    updateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR1, 'color': 'lightgray'}, draw=false);
+
+    Interface.Status.startVariables();
+    Interface.Status.update();
 
     Interface.Minimap.startMinimap();
 
     let island = new Island(1);
+    Interface.Map.startVariables();
     Interface.Map.updateMapView(island.mapping);
+    updateScreen();
 }
 
 
