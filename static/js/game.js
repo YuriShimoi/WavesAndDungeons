@@ -5,7 +5,7 @@ class Interface {
         }
 
         static update() {
-            updateElement("status-health-bar", {value:player.ship.health, max:player.ship.maxHealth}, draw=false);
+            
         }
     }
 
