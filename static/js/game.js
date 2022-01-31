@@ -5,13 +5,7 @@ class Interface {
         }
 
         static update() {
-            // updateElement("status-level", {text:` [${player.ship.level}]`}, draw=false);
-            // updateElement("status-health", {text:` [${player.ship.health}/${player.ship.maxHealth}]`}, draw=false);
             updateElement("status-health-bar", {value:player.ship.health, max:player.ship.maxHealth}, draw=false);
-            // updateElement("status-crew", {text:` [${player.ship.crew}]`}, draw=false);
-            // updateElement("status-food", {text:` [${player.food}]`}, draw=false);
-            // updateElement("status-wood", {text:` [${player.wood}]`}, draw=false);
-            // updateElement("status-gold", {text:` [${player.gold}]`}, draw=false);
         }
     }
 
