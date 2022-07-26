@@ -19,11 +19,11 @@ class Interface {
             let textMap = "";
             for(let y=0; y < IslandMapping.length; y++) {
                 for(let x=0; x < IslandMapping[y].length; x++) {
-                    textMap += IslandMapping[y][x] == 1? '██': WHITESPACE+WHITESPACE;
+                    textMap += IslandMapping[y][x] == 1? '██': PrompterCharmap.WHITESPACE + PrompterCharmap.WHITESPACE;
                 }
             }
-        
-            updateElement("islandView", {text: textMap}, draw=false);
+            
+            Prompter.UpdateElement("islandView", {text: textMap}, draw=false);
         }
     }
 
@@ -32,7 +32,7 @@ class Interface {
             'size'   : { 'x': 17, 'y': 21 },
             'mapping': [[]],
             'charmap': {
-                'none'  : WHITESPACE,
+                'none'  : PrompterCharmap.WHITESPACE,
                 'player': '▲'
             }
         };
@@ -50,7 +50,7 @@ class Interface {
                     }
                 }
             }
-            updateElement("minimap-cells", {text: textMap}, draw=false);
+            Prompter.UpdateElement("minimap-cells", {text: textMap}, draw=false);
         }
         
         static startMinimap(playerX=Interface.Minimap.minimap.size.x/2, playerY=Interface.Minimap.minimap.size.y/2) {
@@ -59,7 +59,7 @@ class Interface {
     
             playerX = Math.ceil(playerX)*3 - 1;
             playerY = Math.ceil(playerY);
-            updateElement('minimap-player', { text: Interface.Minimap.minimap.charmap.player, x: playerX, y: playerY }, draw=false);
+            Prompter.UpdateElement('minimap-player', { text: Interface.Minimap.minimap.charmap.player, x: playerX, y: playerY }, draw=false);
     
             Interface.Minimap.updateMinimap();
         }

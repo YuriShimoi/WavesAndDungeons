@@ -5,15 +5,15 @@ GLOBAL_VARIABLE_REGISTER["IMAGES"] = IMAGES;
 
 // FUNCTIONS
 function startGame(){
-    delElement('start_button', draw=false);
-    newElement('div', {id:'title_case', type:'none', width:107, height:19, x:'center', y:'center'}, 'main', draw=false);
-    newElement('div', {id:'title_p1',   type:'none', text:CHARSET_TITLE_1, width:105, height:7, x:'center', color:'#5de5ff'}, 'title_case', draw=false);
+    Prompter.DelElement('start_button', draw=false);
+    Prompter.NewElement('div', {id:'title_case', type:'none', width:107, height:19, x:'center', y:'center'}, 'main', draw=false);
+    Prompter.NewElement('div', {id:'title_p1',   type:'none', text:CHARSET_TITLE_1, width:105, height:7, x:'center', color:'#5de5ff'}, 'title_case', draw=false);
 
     diagonalBlinkDiv('title_p1', '*', 5, 2, () => {
-        newElement('div', {id:'title_p2',   type:'none', text:CHARSET_TITLE_2, width:105, height:9, x:'center', yalign:'bottom', color:'#2d85bd'}, 'title_case', draw=false);
+        Prompter.NewElement('div', {id:'title_p2',   type:'none', text:CHARSET_TITLE_2, width:105, height:9, x:'center', yalign:'bottom', color:'#2d85bd'}, 'title_case', draw=false);
         diagonalBlinkDiv('title_p2', '*', 5, 2, () => {
         setTimeout(() => {
-            delElement('title_case', {hidden: 'true'});
+            Prompter.DelElement('title_case', {hidden: 'true'});
             showClassWindow();
         }, 1000);
         });
@@ -21,19 +21,19 @@ function startGame(){
 }
 
 function showClassWindow() {
-    enableElement("chooseClass");
+    Prompter.EnableElement("chooseClass");
 }
 
 function chooseClass(type) {
     player = new Player(type);
-    disableElement("chooseClass");
+    Prompter.DisableElement("chooseClass");
     showInterface();
 }
 
 function showInterface(){
-    enableElement("profile", draw=false);
-    enableElement("map", draw=false);
-    updateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR1, 'color': 'lightgray'}, draw=false);
+    Prompter.EnableElement("profile", draw=false);
+    Prompter.EnableElement("map", draw=false);
+    Prompter.UpdateElement("sep1", {'disabled': "false", 'text': VERTICAL_SEPARATOR1, 'color': 'lightgray'}, draw=false);
 
     Interface.Status.startVariables();
     Interface.Status.update();
@@ -43,7 +43,7 @@ function showInterface(){
     let island = new Island(1);
     Interface.Map.startVariables();
     Interface.Map.updateMapView(island.mapping);
-    updateScreen();
+    PrompterScreen.UpdateScreen();
 }
 
 
@@ -58,7 +58,7 @@ function diagonalBlinkDiv(eid, char="*", delay=50, angle=2, end_call=()=>{}){
     let interval = setInterval(() => {
         if(step++ >= wid+(hei*angle)) {
             clearInterval(interval);
-            updateElement(eid, {text: txt});
+            Prompter.UpdateElement(eid, {text: txt});
             end_call();
             return;
         }
@@ -75,6 +75,6 @@ function diagonalBlinkDiv(eid, char="*", delay=50, angle=2, end_call=()=>{}){
             btext += ' '.repeat((wid*(y+1)) - (ypos+1));
         }
         
-        updateElement(eid, {text: btext});
+        Prompter.UpdateElement(eid, {text: btext});
     }, delay);
 }

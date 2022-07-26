@@ -84,20 +84,20 @@
 
           <!-- NAVIGATOR -->
           <div type="double" width=100 height=1 yalign="bottom" y=2 x=0>
-            <text text="|" x="16" color="lightgray" disabled="true"></text>
-            <text text=" NAVIGATION MAP " type="bold" onclick="toggleElement('minimap-window')" disabled="true"></text>
-            <text text=" ISLAND " x=18 type="bold" onclick="toggleElement('island-window')" disabled="true"></text>
+            <text text="|" x="17" color="lightgray" disabled="true"></text>
+            <text text=" NAVIGATION MAP " type="bold" onclick="Prompter.ToggleElement('minimap-window')" disabled="true"></text>
+            <text text=" ISLAND " x=18 type="bold" onclick="Prompter.ToggleElement('island-window')" disabled="true"></text>
             <text text="|" x="90" color="lightgray"></text>
-            <text text=" SETTINGS " x=0 xalign="right" type="bold" onclick="toggleElement('settings-window')"></text>
+            <text text=" SETTINGS " x=0 xalign="right" type="bold" onclick="Prompter.ToggleElement('settings-window')"></text>
           </div>
 
 
           <!-- DIALOG WINDOW -->
           <div id="dialogwindow" type="none" height=27 width=100 x=0 y=0>
             <div id="eventwindow" type="none" height=27 width=100 x=0 y=0>
-              <img src="#${IMAGES.NPC.CAPTAIN}" height=18 width=50 ignore="#111111">
+              <img src="#${IMAGES.MONSTER.SQUID}" height=18 width=50 ignore="#111111">
               <div id="eventdialog" width="96" height="7" x=2 yalign="bottom">
-
+                <text text="Oh shit..." x="center" y="center"></text>
               </div>
             </div>
           </div>
@@ -124,10 +124,10 @@
 
           <div id="settings-window" type="bold" x="center" y="center" width=25 height=23 disabled="true">
             <text text="THEME" x="center" type="bold"></text>
-            <text text=" black" y=2 onclick="updateElement('prompt', {type: 'default'}, false)"></text>
-            <text text="retro " y=2 xalign="right" x=0 onclick="updateElement('prompt', {type: 'retro'}, false)"></text>
-            <text text=" white" y=3 onclick="updateElement('prompt', {type: 'white'}, false)"></text>
-            <text text="seablue " y=3 xalign="right" x=0 onclick="updateElement('prompt', {type: 'seablue'}, false)"></text>
+            <text text=" black" y=2 onclick="Prompter.UpdateElement('prompt', {type: 'default'}, false)"></text>
+            <text text="retro " y=2 xalign="right" x=0 onclick="Prompter.UpdateElement('prompt', {type: 'retro'}, false)"></text>
+            <text text=" white" y=3 onclick="Prompter.UpdateElement('prompt', {type: 'white'}, false)"></text>
+            <text text="seablue " y=3 xalign="right" x=0 onclick="Prompter.UpdateElement('prompt', {type: 'seablue'}, false)"></text>
           </div>
 
         </div>
