@@ -1,5 +1,6 @@
 // VARIABLES
 let player = null;
+GLOBAL_VARIABLE_REGISTER["IMAGES"] = IMAGES;
 
 
 // FUNCTIONS
