@@ -1,0 +1,7 @@
+prompt[type="seablue"] {
+    --background-color: var(--black);
+    --color: var(--blue);
+}
+prompt[type="seablue"] a:hover {
+    color: var(--white);
+}
