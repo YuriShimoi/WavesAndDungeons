@@ -16,8 +16,8 @@
   </head>
   <body>
     <prompt id="prompt">
-      <!-- 149×29 => 1366×768 -->
-      <div type="none" id="main" x="center" y="center" width=141 height=31>
+      <!-- 140×29 => 1366×768 -->
+      <div type="none" id="main" x="center" y="center" width=142 height=31>
         <text id="start_button" x="center" y="center" text="START" type="bold" color="#5de5ff" onclick="startGame()"></text>
         <div id="chooseClass" type="double" y="center" x="center" width=32 height=19 disabled="true">
           <text text="Choose Your Class" x="center" type="bold"></text>
@@ -39,10 +39,10 @@
           <text text="[Juicy] +10% Attract pirates" x=3 y=18></text>
         </div>
 
-        <div id="profile" type="double" height=29 width=30 disabled="true">
-          <div id="status" type="none" y=0 x=0 width=30 height=9>
+        <div id="profile" type="double" height=29 width=31 disabled="true">
+          <div id="status" type="none" y=0 x=0 width=31 height=9>
             <text text="STATUS" x="center" type="bold"></text>
-            <hr y=2 type="bold" width=30>
+            <hr y=2 type="bold" width=31>
 
             <hr fill="-" width=28 x=2 y=3 color="lightgray">
             <text text="Level " y=3 type="bold"></text>
@@ -52,9 +52,10 @@
             <text text="Health " y=4 type="bold"></text>
             <text id="status-health" text=" [${player.ship.health}/${player.ship.maxHealth}]" y=4 x=0 xalign="right"></text>
 
-            <text y=5 text="[                            ]"></text>
-            <hr y=5 fill="∙" width=28 x=2 color="gray">
-            <progress id="status-health-bar" value="player.ship.health" max="player.ship.maxHealth" width=28 x=2 y=5 empty='' fill='#' color="#cc0000"></progress>
+            <text y=5 text="["></text>
+            <text y=5 text="]" x=0 xalign="right"></text>
+            <hr y=5 fill="∙" width=29 x=2 color="gray">
+            <progress id="status-health-bar" value="player.ship.health" max="player.ship.maxHealth" width=29 x=2 y=5 empty='' fill='#' color="#cc0000"></progress>
 
             <hr fill="-" width=28 x=2 y=7 color="lightgray">
             <text text="Crew " y=7 type="bold"></text>
@@ -72,13 +73,13 @@
             <text text="Gold " y=10 type="bold" color="#ee9f01"></text>
             <text id="status-gold" text=" [${player.gold}]" y=10 x=0 xalign="right" color="#ee9f01"></text>
           </div>
-          <div id="inventory" type="double" y=2 x=0 width=30 height=18 yalign="bottom">
+          <div id="inventory" type="double" y=2 x=0 width=31 height=18 yalign="bottom">
             <text text="INVENTORY" x="center" type="bold"></text>
-            <hr y=2 type="bold" width=30>
+            <hr y=2 type="bold" width=31>
           </div>
         </div>
 
-        <div id="sep1" type="none" clip="true" width=7 height=31 x=32 y=0 text="" disabled="true"></div>
+        <div id="sep1" type="none" clip="true" width=7 height=31 x=33 y=0 text="" disabled="true"></div>
         
         <div id="map" type="double" height=29 width=100 xalign="right" disabled="true">
 
