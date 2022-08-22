@@ -17,7 +17,10 @@
   <body>
     <prompt id="prompt">
       <!-- 140×29 => 1366×768 -->
-      <div type="none" id="main" x="center" y="center" width=142 height=31>
+      <div id="background" type="none" xalign="center" yalign="center" width="280" height="58">
+        <text text="${sample_long_text}" xalign="center" yalign="center"></text>
+      </div>
+      <div id="main" type="none" x="center" y="center" width=142 height=31 disabled="true">
         <text id="start_button" x="center" y="center" text="START" type="bold" color="#5de5ff" onclick="startGame()"></text>
         <div id="chooseClass" type="double" y="center" x="center" width=32 height=19 disabled="true">
           <text text="Choose Your Class" x="center" type="bold"></text>
@@ -134,5 +137,12 @@
         </div>
       </div>
     </prompt>
+
+    <script>
+      GLOBAL_VARIABLE_REGISTER['sample_long_text'] =
+`some really long text just here saying something that i hope is starting to 
+overflow the page and test some out-windows properties that cant be tested without 
+really long text samples and some kind of creativity to stay elaboring this text`.replaceAll('\n','');
+    </script>
   </body>
 </html>
