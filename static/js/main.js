@@ -6,11 +6,11 @@ GLOBAL_VARIABLE_REGISTER["IMAGES"] = IMAGES;
 // FUNCTIONS
 function startGame(){
     Prompter.DelElement('start_button', draw=false);
-    Prompter.NewElement('div', {id:'title_case', type:'none', width:107, height:19, x:'center', y:'center'}, 'main', draw=false);
-    Prompter.NewElement('div', {id:'title_p1',   type:'none', text:CHARSET_TITLE_1, width:105, height:7, x:'center', color:'#5de5ff'}, 'title_case', draw=false);
+    Prompter.NewElement('div', {id:'title_case', type:'none', width:107, height:19, xalign:'center', yalign:'center'}, 'main', draw=false);
+    Prompter.NewElement('div', {id:'title_p1',   type:'none', text:CHARSET_TITLE_1, width:105, height:7, xalign:'center', color:'#5de5ff'}, 'title_case', draw=false);
 
     diagonalBlinkDiv('title_p1', '*', 5, 2, () => {
-        Prompter.NewElement('div', {id:'title_p2',   type:'none', text:CHARSET_TITLE_2, width:105, height:9, x:'center', yalign:'bottom', color:'#2d85bd'}, 'title_case', draw=false);
+        Prompter.NewElement('div', {id:'title_p2',   type:'none', text:CHARSET_TITLE_2, width:105, height:9, xalign:'center', yalign:'bottom', color:'#2d85bd'}, 'title_case', draw=false);
         diagonalBlinkDiv('title_p2', '*', 5, 2, () => {
         setTimeout(() => {
             Prompter.DelElement('title_case', {hidden: 'true'});
